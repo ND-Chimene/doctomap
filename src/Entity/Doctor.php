@@ -5,7 +5,10 @@ namespace App\Entity;
 use App\Repository\DoctorRepository;
 use Doctrine\ORM\Mapping as ORM;
 
+use ApiPlatform\Metadata\ApiResource;
+
 #[ORM\Entity(repositoryClass: DoctorRepository::class)]
+#[ApiResource]
 class Doctor
 {
     #[ORM\Id]
@@ -23,7 +26,7 @@ class Doctor
     private ?string $speciality = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $adress = null;
+    private ?string $address = null;
 
     #[ORM\Column(length: 50)]
     private ?string $city = null;
@@ -33,6 +36,13 @@ class Doctor
 
     #[ORM\Column(length: 12)]
     private ?string $phone = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $image = null;
+
+    public function __construct(){
+        $this->image = 'default.jpg';
+    }
 
     public function getId(): ?int
     {
@@ -75,14 +85,14 @@ class Doctor
         return $this;
     }
 
-    public function getAdress(): ?string
+    public function getAddress(): ?string
     {
-        return $this->adress;
+        return $this->address;
     }
 
-    public function setAdress(string $adress): static
+    public function setAddress(string $address): static
     {
-        $this->adress = $adress;
+        $this->address = $address;
 
         return $this;
     }
@@ -119,6 +129,18 @@ class Doctor
     public function setPhone(string $phone): static
     {
         $this->phone = $phone;
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(string $image): static
+    {
+        $this->image = $image;
 
         return $this;
     }
