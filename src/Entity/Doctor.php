@@ -40,10 +40,6 @@ class Doctor
     #[ORM\Column(length: 255)]
     private ?string $image = null;
 
-    public function __construct(){
-        $this->image = 'default.jpg';
-    }
-
     public function getId(): ?int
     {
         return $this->id;
